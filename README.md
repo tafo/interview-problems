@@ -47,5 +47,5 @@ Example 2
     ...
 }
 ```
-[Answer](interview/blob/master/Interview.Code/Twenty/TaskScheduler.cs)
+[Answer](/Interview.Code/Twenty/TaskScheduler.cs)
 ***
