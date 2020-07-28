@@ -6,6 +6,7 @@ My codes(answers) to interview questions
 
 ## Task Scheduler
 
+```
 You are given a char array representing tasks CPU need to do
 
 It contains capital letters A to Z where each letter represents a different task
@@ -25,7 +26,8 @@ However
 }
 
 Return the least number of units of times that the CPU will take to finish all the given tasks
-
+```
+```
 Example 1
 {
     Input: tasks = ["A","A","A","B","B","B"], n = 2
@@ -44,7 +46,6 @@ Example 2
     ["B","B","B","A","A","A"]
     ...
 }
-
+```
 [Answer](https://github.com/tafo/Algorithm/Twenty/TaskScheduler.cs)
-
 ***
