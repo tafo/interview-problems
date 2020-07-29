@@ -11,5 +11,8 @@ bld/
 [Oo]bj/
 [Oo]ut/
 
+# Visual Studio
+.vs/
+
 # ???
 Ignore/
