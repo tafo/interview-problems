@@ -118,3 +118,7 @@ The given method
     public IList<string> WordBreak(string s, IList<string> wordDict) { }
 }
 ```
+[Answer](/Interview.Code/Twenty/WordBreak/Solution.cs)
+```
+
+```
