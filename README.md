@@ -112,3 +112,9 @@ Example 3:
     }
 }
 ```
+```
+The given method
+{
+    public IList<string> WordBreak(string s, IList<string> wordDict) { }
+}
+```
