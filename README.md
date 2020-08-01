@@ -63,7 +63,7 @@ Note:
 
     You may assume the dictionary does not contain duplicate words
 }
-
+```
 ```
 Example 1:
 {
