@@ -64,6 +64,7 @@ Note:
     You may assume the dictionary does not contain duplicate words
 }
 
+```
 Example 1:
 {
     Input:
@@ -80,7 +81,6 @@ Example 1:
     }
 }
 
-
 Example 2:
 {
     Input:
@@ -96,7 +96,7 @@ Example 2:
             "pine applepen apple"
         ]
     }
-    Explanation: Note that you are allowed to reuse a dictionary word.
+    Explanation: Note that you are allowed to reuse a dictionary word
 
 }
 Example 3:

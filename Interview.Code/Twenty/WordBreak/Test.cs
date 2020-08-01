@@ -27,7 +27,7 @@ namespace Interview.Code.Twenty.WordBreak
             timer.Stop();
             result.Should().BeEquivalentTo(expectation);
             result.ToList().ForEach(x => _testOutput.WriteLine(x));
-            _testOutput.WriteLine($"Runned in {timer.Elapsed}");
+            _testOutput.WriteLine($"{timer.ElapsedTicks} ticks");
         }
 
         public static IEnumerable<object[]> TestData()
@@ -63,7 +63,7 @@ namespace Interview.Code.Twenty.WordBreak
             yield return new object[]
             {
                 "catsandog",
-                new List<string> {"cat", "cats", "and", "sand", "dog"},
+                new List<string> {"cat", "cats", "and", "sand", "dog", "z"},
                 new List<string>()
             };
         }

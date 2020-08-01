@@ -1,11 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Interview.Code.Twenty.WordBreak
 {
-    /// <summary>
-    /// ToDo: Not Optimized!
-    /// </summary>
     public class Solution
     {
         public IList<string> WordBreak(string s, IList<string> wordDict)
@@ -13,39 +9,42 @@ namespace Interview.Code.Twenty.WordBreak
             var result = new List<string>();
             Trie.Alphabet = new HashSet<int>();
             var rootTrie = new Trie();
-            foreach (var word in wordDict)
+            for (var i = 0; i < wordDict.Count; i++)
             {
-                var lastTrie = word.Aggregate(rootTrie, (trie, letter) => trie.Set(letter));
-                lastTrie.Word = word;
+                rootTrie.Set(wordDict[i]).Word = wordDict[i];
             }
 
-            if (s.Any(letter => !Trie.Alphabet.Contains(letter))) return result;
+            for (var i = 0; i < s.Length; i++)
+            {
+                if (!Trie.Alphabet.Contains(s[i])) return result;
+            }
 
-            CheckWord(rootTrie, 0, new List<string>());
+            Check(0, string.Empty);
             return result;
 
-            void CheckWord(Trie trie, int i, ICollection<string> words)
+            void Check(int i, string sentence)
             {
+                var trie = rootTrie;
                 for (; i < s.Length; i++)
                 {
                     trie = trie.Get(s[i]);
                     if (trie == null) return;
-                    if (trie.Word == null) continue;
-                    if (i + 1 < s.Length) CheckWord(rootTrie, i + 1, new List<string>(words) { trie.Word });
+                    if (trie.Position == 0) continue;
+                    Check(i + 1, $"{sentence} {trie.Word}");
                 }
 
-                if (trie.Word == null) return;
-                words.Add(trie.Word);
-                result.Add(string.Join(" ", words));
+                if (trie.Position == 0) return;
+                result.Add($"{sentence} {trie.Word}".TrimStart());
             }
         }
 
         public class Trie
         {
-            public static HashSet<int> Alphabet;
+            public static HashSet<int> Alphabet { get; set; }
             public string Word { get; set; }
             public int LetterCode { get; set; }
             public List<Trie> Letters { get; set; }
+            public int Position { get; set; }
 
             public Trie(int letterCode = -1)
             {
@@ -53,19 +52,41 @@ namespace Interview.Code.Twenty.WordBreak
                 Letters = new List<Trie>();
             }
 
-            public Trie Set(char letter)
+            public Trie Set(string word)
             {
-                var trie = Get(letter);
-                if (trie != null) return trie;
-                trie = new Trie(letter);
-                Letters.Add(trie);
-                Alphabet.Add(letter);
+                var trie = this;
+                for (var i = 0; i < word.Length; i++)
+                {
+                    trie = trie.Set(word[i]);
+                }
+
+                trie.Position = 1;
                 return trie;
             }
 
-            public Trie Get(char letter)
+            public Trie Set(int letterCode)
             {
-                return Letters.Find(x => x.LetterCode == letter);
+                for (var i = 0; i < Letters.Count; i++)
+                {
+                    var letter = Letters[i];
+                    if (letter.LetterCode == letterCode) return letter;
+                }
+
+                var trie = new Trie(letterCode);
+                Letters.Add(trie);
+                Alphabet.Add(letterCode);
+                return trie;
+            }
+
+            public Trie Get(int letterCode)
+            {
+                for (var i = 0; i < Letters.Count; i++)
+                {
+                    var letter = Letters[i];
+                    if (letter.LetterCode == letterCode) return letter;
+                }
+
+                return null;
             }
         }
     }

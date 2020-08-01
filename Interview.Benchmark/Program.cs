@@ -8,7 +8,7 @@ namespace Interview.Benchmark
         private static void Main()
         {
             Console.ReadLine();
-            BenchmarkRunner.Run(typeof(WordBreakBenchmark));
+            BenchmarkRunner.Run(typeof(WordBreak.Benchmark));
             Console.ReadLine();
         }
     }
